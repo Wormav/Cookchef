@@ -1,6 +1,6 @@
 import styles from "./Content.module.scss";
 import Recipe from "./Recipe";
-import { data } from "./data/recipes";
+import { data } from "../data/recipes";
 
 function Content() {
   const recipes = data;

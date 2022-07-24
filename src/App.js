@@ -3,9 +3,9 @@ import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import HomePage from './pages/HomePage/HomePage';
 import styles from './App.module.scss';
-// import { seedRecipes } from './data/seed'
+import { seedRecipes } from './data/seed';
 
-// seedRecipes()
+seedRecipes();
 
 function App() {
   return (

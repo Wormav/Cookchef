@@ -1,4 +1,4 @@
-@use "./mixins" as mixin ;
+@use './mixins' as mixin;
 
 .b1 {
   background-color: red;
@@ -20,7 +20,7 @@
   border: 1px solid purple;
 }
 
-.rb {
+.br {
   @include mixin.xs {
     border: 2px solid red;
   }

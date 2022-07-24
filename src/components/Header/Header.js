@@ -1,23 +1,24 @@
-import styles from "./Header.module.scss";
-import cookchef from "../assets/images/cookchef.png";
-import { useState } from "react";
-import HeaderMenu from "./HeaderMenu";
+import React, { useState } from 'react';
+import styles from './Header.module.scss';
+import HeaderMenu from './components/HeaderMenu';
 
 function Header() {
   const [showMenu, setShowMenu] = useState(false);
 
   return (
     <header className={`${styles.header} d-flex flex-row align-items-center`}>
-      {/* <i className="fa-solid fa-bars mr-15"></i> */}
       <div className="flex-fill">
-        <img src={cookchef} alt="logo cookchef" />
+        <img
+          src="https://github.com/dymafr/react-c5l4/blob/master/src/assets/images/cookchef.png?raw=true"
+          alt="logo cookchef"
+        />
       </div>
       <ul className={styles.headerList}>
         <button className="mr-5 btn btn-reverse-primary">
           <i className="fa-solid fa-heart mr-5"></i>
           <span>Wishlist</span>
         </button>
-        <button className="btn btn-primary">connexion</button>
+        <button className="btn btn-primary">Connexion</button>
       </ul>
       <i
         onClick={() => setShowMenu(true)}

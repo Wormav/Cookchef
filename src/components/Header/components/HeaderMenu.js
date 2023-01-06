@@ -1,10 +1,13 @@
-import React from 'react';
-import styles from './HeaderMenu.module.scss';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import styles from "./HeaderMenu.module.scss";
 
-function HeaderMenu({ setPage }) {
+function HeaderMenu() {
   return (
     <ul className={`${styles.MenuContainer} card p-20`}>
-      <li onClick={() => setPage('admin')}>Ajouter une recette</li>
+      <li>
+        <NavLink to="/admin">Ajouter une recette</NavLink>
+      </li>
       <li>Wishlist</li>
       <li>Connexion</li>
     </ul>

@@ -1,31 +1,55 @@
-import React, { useState, useContext } from 'react';
-import styles from './HomePage.module.scss';
-import Recipe from './components/Recipe/Recipe';
-import Loading from '../../components/Loading/Loading';
-import Search from './components/Search/Search';
-import { ApiContext } from '../../context/ApiContext';
-import { useFetchData } from '../../hooks';
+import React, { useState, useContext } from "react";
+import styles from "./HomePage.module.scss";
+import Recipe from "./components/Recipe/Recipe";
+import Loading from "../../components/Loading/Loading";
+import Search from "./components/Search/Search";
+import { ApiContext } from "../../context/ApiContext";
+import { useFetchData } from "../../hooks";
 
 export default function HomePage() {
-  const [filter, setFilter] = useState('');
+  const [filter, setFilter] = useState("");
   const [page, setPage] = useState(1);
   const BASE_URL_API = useContext(ApiContext);
   const [[recipes, setRecipes], isLoading] = useFetchData(BASE_URL_API, page);
 
-  function updateRecipe(updatedRecipe) {
-    setRecipes(
-      recipes.map((r) => (r._id === updatedRecipe._id ? updatedRecipe : r))
-    );
+  async function updateRecipe(updatedRecipe) {
+    try {
+      const { _id, ...restRecipe } = updatedRecipe;
+      const response = await fetch(`${BASE_URL_API}/${_id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(restRecipe),
+      });
+      if (response.ok) {
+        const updatedRecipe = await response.json();
+        setRecipes(
+          recipes.map((r) => (r._id === updatedRecipe._id ? updatedRecipe : r))
+        );
+      }
+    } catch (e) {
+      console.log("Erreur");
+    }
   }
 
-  function deleteRecipe(_id) {
-    setRecipes(recipes.filter((r) => r._id !== _id));
+  async function deleteRecipe(_id) {
+    try {
+      const response = await fetch(`${BASE_URL_API}/${_id}`, {
+        method: "DELETE",
+      });
+      if (response.ok) {
+        setRecipes(recipes.filter((r) => r._id !== _id));
+      }
+    } catch (e) {
+      console.log("Erreur");
+    }
   }
 
   return (
     <div className="flex-fill container d-flex flex-column p-20">
       <h1 className="my-30">
-        Découvrez nos nouvelles recettes{' '}
+        Découvrez nos nouvelles recettes{" "}
         <small className={styles.small}>- {recipes.length}</small>
       </h1>
       <div
@@ -42,7 +66,7 @@ export default function HomePage() {
                 <Recipe
                   key={r._id}
                   recipe={r}
-                  toggleLikedRecipe={updateRecipe}
+                  updateRecipe={updateRecipe}
                   deleteRecipe={deleteRecipe}
                 />
               ))}

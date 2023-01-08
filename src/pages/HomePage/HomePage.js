@@ -1,21 +1,21 @@
-import React, { useState, useContext } from "react";
-import styles from "./HomePage.module.scss";
-import Recipe from "./components/Recipe/Recipe";
-import Loading from "../../components/Loading/Loading";
-import Search from "./components/Search/Search";
-import { updateRecipe as updateR, deleteRecipe as deleteR } from "../../apis";
-
-import { useFetchRecipes } from "../../hooks";
+import React, { useState } from 'react';
+import styles from './HomePage.module.scss';
+import Recipe from './components/Recipe/Recipe';
+import Loading from '../../components/Loading/Loading';
+import Search from './components/Search/Search';
+import { useFetchRecipes } from '../../hooks';
+import { updateRecipe as updateR, deleteRecipe as deleteR } from '../../apis';
 
 export default function HomePage() {
-  const [filter, setFilter] = useState("");
+  const [filter, setFilter] = useState('');
   const [page, setPage] = useState(1);
-
   const [[recipes, setRecipes], isLoading] = useFetchRecipes(page);
 
   async function updateRecipe(updatedRecipe) {
-    const saveRecipe = await updateR(updatedRecipe);
-    setRecipes(recipes.map((r) => (r._id === saveRecipe._id ? saveRecipe : r)));
+    const savedRecipe = await updateR(updatedRecipe);
+    setRecipes(
+      recipes.map((r) => (r._id === savedRecipe._id ? savedRecipe : r))
+    );
   }
 
   async function deleteRecipe(_id) {
@@ -26,7 +26,7 @@ export default function HomePage() {
   return (
     <div className="flex-fill container d-flex flex-column p-20">
       <h1 className="my-30">
-        Découvrez nos nouvelles recettes{" "}
+        Découvrez nos nouvelles recettes{' '}
         <small className={styles.small}>- {recipes.length}</small>
       </h1>
       <div

@@ -1,3 +1,3 @@
-# react-c18-l10
+# COOKCHEF
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/react-y2yip1)
+Cookchef is a training project of [Dyma](https://dyma.fr/) REACT 18 training

@@ -1,11 +1,12 @@
-import RecipeForm from "./components/RecipeForm/RecipeForm"
+import React from 'react';
+import RecipeForm from './components/RecipeForm/RecipeForm';
 
 function Admin() {
-    return (
-        <div className="d-flex flex-column flex-fill align-items-center p-20">
-            <RecipeForm />
-        </div>
-    )
+  return (
+    <div className="d-flex flex-column flex-fill align-items-center p-20">
+      <RecipeForm />
+    </div>
+  );
 }
 
-export default Admin
+export default Admin;

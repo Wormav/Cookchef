@@ -1,9 +1,8 @@
-import React from "react";
-
-import styles from "./Recipe.module.scss";
+import React from 'react';
+import styles from './Recipe.module.scss';
 
 function Recipe({ recipe, updateRecipe, deleteRecipe }) {
-  function handleClick() {
+  function handleClickLike() {
     updateRecipe({
       ...recipe,
       liked: !recipe.liked,
@@ -16,7 +15,7 @@ function Recipe({ recipe, updateRecipe, deleteRecipe }) {
   }
 
   return (
-    <div onClick={handleClick} className={styles.recipe}>
+    <div onClick={handleClickLike} className={styles.recipe}>
       <i onClick={handleClickDelete} className="fa-solid fa-xmark"></i>
       <div className={styles.imageContainer}>
         <img src={recipe.image} alt={recipe.title} />
@@ -26,7 +25,7 @@ function Recipe({ recipe, updateRecipe, deleteRecipe }) {
       >
         <h3 className="mb-10">{recipe.title}</h3>
         <i
-          className={`fa-solid fa-heart ${recipe.liked ? "text-primary" : ""}`}
+          className={`fa-solid fa-heart ${recipe.liked ? 'text-primary' : ''}`}
         ></i>
       </div>
     </div>

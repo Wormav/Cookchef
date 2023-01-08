@@ -1,13 +1,11 @@
-import React, { Suspense } from "react";
-import Footer from "./components/Footer/Footer";
-import Header from "./components/Header/Header";
+import React, { Suspense } from 'react';
+import Footer from './components/Footer/Footer';
+import Header from './components/Header/Header';
+import { Outlet } from 'react-router-dom';
+import styles from './App.module.scss';
+import { seedRecipes } from './data/seed';
 
-import styles from "./App.module.scss";
-
-import { Outlet } from "react-router-dom";
-// import { seedRecipes } from "./data/seed";
-
-// seedRecipes();
+seedRecipes();
 
 function App() {
   return (
@@ -18,10 +16,8 @@ function App() {
           <Outlet />
         </Suspense>
       </div>
-
       <Footer />
     </div>
   );
 }
-
 export default App;

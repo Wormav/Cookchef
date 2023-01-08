@@ -1,21 +1,21 @@
-import { lazy } from "react";
-import { createBrowserRouter } from "react-router-dom";
-import App from "./App";
+import React, { lazy } from 'react';
+import { createBrowserRouter } from 'react-router-dom';
+import App from './App';
 
-const Homepage = lazy(() => import("./pages/HomePage/HomePage"));
-const Admin = lazy(() => import("./pages/Admin/Admin"));
+const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
+const Admin = lazy(() => import('./pages/Admin/Admin'));
 
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <App />,
     children: [
       {
         index: true,
-        element: <Homepage />,
+        element: <HomePage />,
       },
       {
-        path: "/admin",
+        path: 'admin',
         element: <Admin />,
       },
     ],

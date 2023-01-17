@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
-import styles from './HomePage.module.scss';
-import Recipe from './components/Recipe/Recipe';
-import Loading from '../../components/Loading/Loading';
-import Search from './components/Search/Search';
-import { useFetchRecipes } from '../../hooks';
-import { updateRecipe as updateR, deleteRecipe as deleteR } from '../../apis';
+import React, { useState } from "react";
+import styles from "./HomePage.module.scss";
+import Recipe from "./components/Recipe/Recipe";
+import Loading from "components/Loading/Loading";
+import Search from "./components/Search/Search";
+import { useFetchRecipes } from "../../hooks";
+import { updateRecipe as updateR, deleteRecipe as deleteR } from "../../apis";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { recipesState, selectFilteredRecipes } from "state";
 
 export default function HomePage() {
-  const [filter, setFilter] = useState('');
+  const [filter, setFilter] = useState("");
   const [page, setPage] = useState(1);
-  const [[recipes, setRecipes], isLoading] = useFetchRecipes(page);
+  const [isLoading] = useFetchRecipes(page);
+  const recipes = useRecoilValue(selectFilteredRecipes(filter));
+  const setRecipes = useSetRecoilState(recipesState);
 
   async function updateRecipe(updatedRecipe) {
     const savedRecipe = await updateR(updatedRecipe);
@@ -26,7 +30,7 @@ export default function HomePage() {
   return (
     <div className="flex-fill container d-flex flex-column p-20">
       <h1 className="my-30">
-        Découvrez nos nouvelles recettes{' '}
+        Découvrez nos nouvelles recettes{" "}
         <small className={styles.small}>- {recipes.length}</small>
       </h1>
       <div

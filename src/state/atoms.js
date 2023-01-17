@@ -1,6 +1,11 @@
-const { atom } = require("recoil");
+const { atom } = require('recoil');
 
 export const recipesState = atom({
-  key: "recipesState",
+  key: 'recipesState',
   default: [],
+});
+
+export const wishlistDisplayState = atom({
+  key: 'wishlistDisplayState',
+  default: false,
 });

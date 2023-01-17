@@ -1,10 +1,11 @@
-import React from "react";
-import { Suspense } from "react";
-import { Outlet, useLocation } from "react-router-dom";
-import AdminRecipesNav from "./components/AdminRecipesNav/AdminRecipesNav";
+import React from 'react';
+import { Suspense } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
+import AdminRecipesNav from './components/AdminRecipesNav/AdminRecipesNav';
 
 function AdminRecipes() {
   const { key } = useLocation();
+
   return (
     <div className="d-flex flex-column flex-fill">
       <h4 className="mb-20">Gestion des recettes</h4>
